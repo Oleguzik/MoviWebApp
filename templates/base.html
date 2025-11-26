@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}MoviWebApp{% endblock %}</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+	<header class="header">
+		<nav class="navbar">
+			<div class="container">
+				<h1 class="logo">🎬 MoviWebApp</h1>
+				<ul class="nav-links">
+					<li><a href="{{ url_for('index') }}">Home</a></li>
+					{% if current_user_id %}
+						<li><span class="user-info">User: <strong>{{ current_user_name }}</strong></span></li>
+						<li><a href="{{ url_for('index') }}">Change User</a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
+	</header>
+
+	<main class="container">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+			{% if messages %}
+				{% for category, message in messages %}
+					<div class="alert alert-{{ category }}">
+						{{ message }}
+						<button class="alert-close" onclick="this.parentElement.style.display='none';">&times;</button>
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+
+		{% block content %}{% endblock %}
+	</main>
+
+	<footer class="footer">
+		<p>&copy; 2025 MoviWebApp. Manage your favorite movies.</p>
+	</footer>
+</body>
+</html>
