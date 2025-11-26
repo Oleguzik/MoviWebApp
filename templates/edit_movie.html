@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Movie - MoviWebApp{% endblock %}
+
+{% block content %}
+<div class="page-container form-container">
+	<h2>Edit Movie</h2>
+	
+	<form method="POST" action="{{ url_for('update_movie', user_id=movie.user_id, movie_id=movie.id) }}" class="form-group">
+		<div class="form-field">
+			<label for="name">Movie Title *</label>
+			<input 
+				type="text" 
+				id="name" 
+				name="name" 
+				class="form-input"
+				value="{{ movie.name }}"
+				required
+				maxlength="200"
+			>
+		</div>
+
+		<div class="form-field">
+			<label for="director">Director *</label>
+			<input 
+				type="text" 
+				id="director" 
+				name="director" 
+				class="form-input"
+				value="{{ movie.director }}"
+				required
+				maxlength="100"
+			>
+		</div>
+
+		<div class="form-field">
+			<label for="year">Year of Release *</label>
+			<input 
+				type="number" 
+				id="year" 
+				name="year" 
+				class="form-input"
+				value="{{ movie.year }}"
+				required
+				min="1800"
+				max="2099"
+			>
+		</div>
+
+		<div class="form-field">
+			<label for="poster_url">Poster URL</label>
+			<input 
+				type="url" 
+				id="poster_url" 
+				name="poster_url" 
+				class="form-input"
+				value="{{ movie.poster_url or '' }}"
+				maxlength="500"
+			>
+		</div>
+
+		<div class="form-actions">
+			<button type="submit" class="btn btn-success">Save Changes</button>
+			<a href="{{ url_for('manage_movies', user_id=movie.user_id) }}" class="btn btn-secondary">Cancel</a>
+		</div>
+	</form>
+</div>
+{% endblock %}
