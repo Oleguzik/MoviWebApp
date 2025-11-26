@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Users - MoviWebApp{% endblock %}
+
+{% block content %}
+<div class="page-container">
+	<!-- List of Users -->
+	<h1>Users</h1>
+	
+	<ul class="users-list">
+		{% for user in users %}
+			<li>
+				<a href="{{ url_for('manage_movies', user_id=user.id) }}">{{ user.name }}</a>
+				<span class="movie-count">({{ user.movies|length }} movie{{ 's' if user.movies|length != 1 else '' }})</span>
+				<form method="POST" action="{{ url_for('delete_user', user_id=user.id) }}" class="delete-form inline-form">
+					<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this user and all their movies?')">Delete</button>
+				</form>
+			</li>
+		{% endfor %}
+	</ul>
+	
+	{% if not users %}
+		<p class="empty-state">No users yet. Create one below!</p>
+	{% endif %}
+
+	<!-- Add New User Form -->
+	<h2>Add New User</h2>
+	<form action="{{ url_for('create_user') }}" method="post" class="form-group">
+		<input 
+			type="text" 
+			name="name" 
+			placeholder="Enter user name" 
+			class="form-input"
+			required
+			maxlength="100"
+		>
+		<button type="submit" class="btn btn-success">Add User</button>
+	</form>
+</div>
+{% endblock %}
