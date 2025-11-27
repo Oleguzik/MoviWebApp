@@ -5,7 +5,7 @@
 {% block content %}
 <div class="page-container">
 	<!-- List of Users -->
-	<h1>Users</h1>
+	<h1><i class="fas fa-users"></i> Users</h1>
 	
 	<ul class="users-list">
 		{% for user in users %}
@@ -13,7 +13,7 @@
 				<a href="{{ url_for('manage_movies', user_id=user.id) }}">{{ user.name }}</a>
 				<span class="movie-count">({{ user.movies|length }} movie{{ 's' if user.movies|length != 1 else '' }})</span>
 				<form method="POST" action="{{ url_for('delete_user', user_id=user.id) }}" class="delete-form inline-form">
-					<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this user and all their movies?')">Delete</button>
+					<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this user and all their movies?')"><i class="fas fa-trash"></i> Delete</button>
 				</form>
 			</li>
 		{% endfor %}
@@ -24,7 +24,7 @@
 	{% endif %}
 
 	<!-- Add New User Form -->
-	<h2>Add New User</h2>
+	<h2><i class="fas fa-user-plus"></i> Add New User</h2>
 	<form action="{{ url_for('create_user') }}" method="post" class="form-group">
 		<input 
 			type="text" 
@@ -34,7 +34,7 @@
 			required
 			maxlength="100"
 		>
-		<button type="submit" class="btn btn-success">Add User</button>
+			<button type="submit" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add User</button>
 	</form>
 </div>
 {% endblock %}

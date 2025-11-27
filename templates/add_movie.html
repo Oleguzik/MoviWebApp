@@ -4,7 +4,16 @@
 
 {% block content %}
 <div class="page-container form-container">
-	<h2>Add New Movie</h2>
+	<!-- Breadcrumb Navigation -->
+	<nav class="breadcrumb">
+		<a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a>
+		<span class="separator">/</span>
+		<a href="{{ url_for('manage_movies', user_id=user_id) }}"><i class="fas fa-film"></i> Movies</a>
+		<span class="separator">/</span>
+		<span class="current">Add Movie</span>
+	</nav>
+
+	<h2><i class="fas fa-film-alt"></i> Add New Movie</h2>
 	
 	<p class="info-text">
 		💡 Tip: Enter just the movie title and we'll fetch director, year, and poster from OMDb!
@@ -12,7 +21,7 @@
 	
 	<form method="POST" action="{{ url_for('add_movie', user_id=user_id) }}" class="form-group" id="add-movie-form">
 		<div class="form-field">
-			<label for="name">Movie Title *</label>
+			<label for="name"><i class="fas fa-video"></i> Movie Title *</label>
 			<div class="input-with-spinner">
 				<input 
 					type="text" 
@@ -29,7 +38,7 @@
 		</div>
 
 		<div class="form-field">
-			<label for="director">Director <span class="optional">(auto-filled by OMDb)</span></label>
+			<label for="director"><i class="fas fa-user-tie"></i> Director <span class="optional">(auto-filled by OMDb)</span></label>
 			<input 
 				type="text" 
 				id="director" 
@@ -41,7 +50,7 @@
 		</div>
 
 		<div class="form-field">
-			<label for="year">Year of Release <span class="optional">(auto-filled by OMDb)</span></label>
+			<label for="year"><i class="fas fa-calendar-alt"></i> Year of Release <span class="optional">(auto-filled by OMDb)</span></label>
 			<input 
 				type="number" 
 				id="year" 
@@ -54,7 +63,7 @@
 		</div>
 
 		<div class="form-field">
-			<label for="poster_url">Poster URL</label>
+			<label for="poster_url"><i class="fas fa-image"></i> Poster URL</label>
 			<input 
 				type="url" 
 				id="poster_url" 
@@ -71,8 +80,8 @@
 		</div>
 
 		<div class="form-actions">
-			<button type="submit" class="btn btn-success" id="submit-btn">🎬 Add Movie</button>
-			<a href="{{ url_for('manage_movies', user_id=user_id) }}" class="btn btn-secondary">Cancel</a>
+			<button type="submit" class="btn btn-success" id="submit-btn"><i class="fas fa-plus-circle"></i> Add Movie</button>
+			<a href="{{ url_for('manage_movies', user_id=user_id) }}" class="btn btn-secondary"><i class="fas fa-times"></i> Cancel</a>
 		</div>
 	</form>
 </div>

@@ -4,11 +4,20 @@
 
 {% block content %}
 <div class="page-container form-container">
-	<h2>Edit Movie</h2>
+	<!-- Breadcrumb Navigation -->
+	<nav class="breadcrumb">
+		<a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a>
+		<span class="separator">/</span>
+		<a href="{{ url_for('manage_movies', user_id=movie.user_id) }}"><i class="fas fa-film"></i> Movies</a>
+		<span class="separator">/</span>
+		<span class="current">Edit Movie</span>
+	</nav>
+
+	<h2><i class="fas fa-edit"></i> Edit Movie</h2>
 	
 	<form method="POST" action="{{ url_for('update_movie', user_id=movie.user_id, movie_id=movie.id) }}" class="form-group">
 		<div class="form-field">
-			<label for="name">Movie Title *</label>
+			<label for="name"><i class="fas fa-video"></i> Movie Title *</label>
 			<input 
 				type="text" 
 				id="name" 
@@ -21,7 +30,7 @@
 		</div>
 
 		<div class="form-field">
-			<label for="director">Director *</label>
+			<label for="director"><i class="fas fa-user-tie"></i> Director *</label>
 			<input 
 				type="text" 
 				id="director" 
@@ -34,7 +43,7 @@
 		</div>
 
 		<div class="form-field">
-			<label for="year">Year of Release *</label>
+			<label for="year"><i class="fas fa-calendar-alt"></i> Year of Release *</label>
 			<input 
 				type="number" 
 				id="year" 
@@ -48,7 +57,7 @@
 		</div>
 
 		<div class="form-field">
-			<label for="poster_url">Poster URL</label>
+			<label for="poster_url"><i class="fas fa-image"></i> Poster URL</label>
 			<input 
 				type="url" 
 				id="poster_url" 
@@ -60,8 +69,8 @@
 		</div>
 
 		<div class="form-actions">
-			<button type="submit" class="btn btn-success">Save Changes</button>
-			<a href="{{ url_for('manage_movies', user_id=movie.user_id) }}" class="btn btn-secondary">Cancel</a>
+			<button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save Changes</button>
+			<a href="{{ url_for('manage_movies', user_id=movie.user_id) }}" class="btn btn-secondary"><i class="fas fa-times"></i> Cancel</a>
 		</div>
 	</form>
 </div>

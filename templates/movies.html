@@ -4,9 +4,16 @@
 
 {% block content %}
 <div class="page-container">
+	<!-- Breadcrumb Navigation -->
+	<nav class="breadcrumb">
+		<a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a>
+		<span class="separator">/</span>
+		<span class="current"><i class="fas fa-user"></i> {{ user.name }}</span>
+	</nav>
+
 	<div class="page-header">
-		<h2>{{ user.name }}'s Favorite Movies</h2>
-		<a href="{{ url_for('add_movie', user_id=user.id) }}" class="btn btn-success">+ Add Movie</a>
+		<h2><i class="fas fa-film"></i> {{ user.name }}'s Favorite Movies</h2>
+		<a href="{{ url_for('add_movie', user_id=user.id) }}" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Movie</a>
 	</div>
 
 	{% if movies %}
@@ -19,9 +26,9 @@
 					class="form-input"
 					value="{{ query or '' }}"
 				>
-				<button type="submit" class="btn btn-primary">Search</button>
+				<button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
 				{% if query %}
-					<a href="{{ url_for('manage_movies', user_id=user.id) }}" class="btn btn-secondary">Clear</a>
+					<a href="{{ url_for('manage_movies', user_id=user.id) }}" class="btn btn-secondary"><i class="fas fa-times"></i> Clear</a>
 				{% endif %}
 			</form>
 		</div>
@@ -38,15 +45,15 @@
 					</div>
 					
 					<div class="movie-info">
-						<h3 class="movie-title">{{ movie.name }}</h3>
-						<p class="director"><strong>Director:</strong> <span>{{ movie.director }}</span></p>
-						<p class="year"><strong>Year:</strong> <span>{{ movie.year }}</span></p>
+						<h3 class="movie-title"><i class="fas fa-video"></i> {{ movie.name }}</h3>
+						<p class="director"><i class="fas fa-user-tie"></i> <strong>Director:</strong> <span>{{ movie.director }}</span></p>
+						<p class="year"><i class="fas fa-calendar-alt"></i> <strong>Year:</strong> <span>{{ movie.year }}</span></p>
 					</div>
 
 					<div class="movie-actions">
-						<a href="{{ url_for('update_movie', user_id=user.id, movie_id=movie.id) }}" class="btn btn-secondary btn-sm">Edit</a>
+						<a href="{{ url_for('update_movie', user_id=user.id, movie_id=movie.id) }}" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Edit</a>
 						<form method="POST" action="{{ url_for('delete_movie_route', user_id=user.id, movie_id=movie.id) }}" class="delete-form">
-							<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this movie?')">Delete</button>
+							<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this movie?')"><i class="fas fa-trash"></i> Delete</button>
 						</form>
 					</div>
 				</div>
