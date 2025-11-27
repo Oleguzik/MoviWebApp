@@ -296,4 +296,6 @@ def server_error(error):
 
 
 if __name__ == '__main__':
-	app.run(port=5005, debug=True)
+	# Only run debug mode locally, not in production
+	debug_mode = os.environ.get('FLASK_ENV', 'development') == 'development'
+	app.run(port=5005, debug=debug_mode)
