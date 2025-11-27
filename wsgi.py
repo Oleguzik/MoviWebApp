@@ -14,6 +14,7 @@ if project_home not in sys.path:
 os.environ['FLASK_ENV'] = 'production'
 
 # Import your Flask app
-from app import app as application
+# Note: 'application' is used by the WSGI server, not within this file
+from app import app as application  # noqa: F401
 
-# Note: PythonAnywhere expects the variable to be named 'application'
+# PythonAnywhere expects the variable to be named 'application'
