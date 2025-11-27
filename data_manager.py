@@ -116,6 +116,25 @@ class DataManager:
 			return user.movies
 		return []
 
+	def search_movies(self, user_id, query):
+		"""Search movies by title or director for a specific user.
+
+		Args:
+			user_id (int): The user's ID
+			query (str): Search term to match against title or director
+
+		Returns:
+			list: List of Movie objects matching the search
+		"""
+		search_term = f"%{query}%"
+		return Movie.query.filter(
+			Movie.user_id == user_id,
+			db.or_(
+				Movie.name.ilike(search_term),
+				Movie.director.ilike(search_term)
+			)
+		).all()
+
 	def add_movie(self, user_id, movie):
 		"""Add a new movie to a user's favorites.
 
